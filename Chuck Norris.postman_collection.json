@@ -1,0 +1,139 @@
+{
+  "info": {
+    "_postman_id": "bc9d1a79-87dd-48c9-92e5-c8d7a8f6b24b",
+    "name": "Chuck Norris",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "59284563",
+    "_collection_link": "https://go.postman.co/collection/59284563-bc9d1a79-87dd-48c9-92e5-c8d7a8f6b24b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "random joke",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/random",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "random"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "category",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"La respuesta contiene exactamente 16 categorías\", function () {\r\n    var jsonData = pm.response.json();\r\n    pm.expect(jsonData).to.be.an('array');\r\n    pm.expect(jsonData.length).to.eql(16);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/categories",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "categories"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "random joke from categories",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/random?category={{category}}",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "random"
+          ],
+          "query": [
+            {
+              "key": "category",
+              "value": "{{category}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "busca chistes por palabras",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.chucknorris.io/jokes/search?query=sport",
+          "protocol": "https",
+          "host": [
+            "api",
+            "chucknorris",
+            "io"
+          ],
+          "path": [
+            "jokes",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "query",
+              "value": "sport"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
